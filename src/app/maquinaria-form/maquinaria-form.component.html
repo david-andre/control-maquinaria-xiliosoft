@@ -1,0 +1,53 @@
+<div class="row m-4">
+  <div class="card">
+    <div class="card-header">Datos de la maquinaria</div>
+    <div class="card-body">
+      <form (ngSubmit)="f.form.valid && saveMaquinaria(data)" #f="ngForm">
+        <div class="row">
+          <div class="col">
+            <label>Serie</label>
+            <input
+              [(ngModel)]="data.serie"
+              type="text"
+              name="serie"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="col">
+            <label>Descripción</label>
+            <input
+              [(ngModel)]="data.descripcion"
+              type="text"
+              name="descripcion"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+        <div *ngIf="index && data.asignado" class="row mt-3">
+          <div class="col">
+            <label>Asignado</label>
+            <input
+              [(ngModel)]="data.empleado.nombre"
+              type="text"
+              name="Asignado"
+              class="form-control"
+              disabled
+            />
+          </div>
+          <div class="col">
+            <button
+              (click)="disallowMaquinaria()"
+              class="btn btn-danger mt-4 p-3"
+              type="button"
+            >
+              Quitar Asignación
+            </button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>

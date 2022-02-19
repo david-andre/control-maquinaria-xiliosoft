@@ -1,0 +1,50 @@
+<div class="container">
+  <h1>Listado de Empleados</h1>
+  <button [routerLink]="['/empleados/form']" class="btn btn-success mb-3">
+    Registrar
+  </button>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Cédula</th>
+                <th scope="col">Area</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngIf="empleados.length === 0; else elseBlock">
+                <td colspan="5">No existen empleados registrados</td>
+              </tr>
+              <ng-template #elseBlock
+                ><tr *ngFor="let empleado of empleados; let i = index">
+                  <td>{{ empleado.nombre }}</td>
+                  <td>{{ empleado.cargo }}</td>
+                  <td>{{ empleado.cedula }}</td>
+                  <td>{{ empleado.area }}</td>
+                  <td>
+                    <i
+                      style="cursor: pointer"
+                      [routerLink]="['/empleados/form', i]"
+                      class="fa-solid fa-pen-to-square mr-3 text-info"
+                    ></i>
+                    <i
+                      style="cursor: pointer"
+                      (click)="removeEmpleado(i)"
+                      class="fa-solid fa-trash text-danger"
+                    ></i>
+                  </td></tr
+              ></ng-template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

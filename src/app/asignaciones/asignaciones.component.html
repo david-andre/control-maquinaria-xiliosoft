@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row m-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">Asignación de maquinaria</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label class="form-label mr-4">Empleado</label>
+            <select [(ngModel)]="selectedEmpleado" class="form-select">
+              <option
+                [ngValue]="empleado"
+                *ngFor="let empleado of empleados; let i = index"
+              >
+                {{ empleado.nombre }}
+              </option>
+            </select>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Serie</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Asignar</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngIf="maquinarias.length === 0; else elseBlock">
+                <td colspan="5">No existen maquinarias disponibles</td>
+              </tr>
+              <ng-template #elseBlock
+                ><tr *ngFor="let maquinaria of maquinarias; let i = index">
+                  <td>{{ maquinaria.serie }}</td>
+                  <td>{{ maquinaria.descripcion }}</td>
+                  <td>
+                    <div class="form-check">
+                      <input
+                        [(ngModel)]="checks[i]"
+                        value="{{ false }}"
+                        class="form-check-input"
+                        type="checkbox"
+                      />
+                    </div>
+                  </td></tr
+              ></ng-template>
+            </tbody>
+          </table>
+          <button (click)="save()" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

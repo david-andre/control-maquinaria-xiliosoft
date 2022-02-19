@@ -1,0 +1,62 @@
+<div class="container">
+  <h1>Listado de Maquinarias</h1>
+  <button [routerLink]="['/maquinarias/form']" class="btn btn-success mb-3">
+    Registrar
+  </button>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Serie</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngIf="maquinarias.length === 0; else elseBlock">
+                <td colspan="5">No existen maquinarias registradas</td>
+              </tr>
+              <ng-template #elseBlock
+                ><tr *ngFor="let maquinaria of maquinarias; let i = index">
+                  <td>{{ maquinaria.serie }}</td>
+                  <td>{{ maquinaria.descripcion }}</td>
+                  <td>
+                    <h6>
+                      <span
+                        *ngIf="!maquinaria.asignado; else elseBlock"
+                        class="badge rounded-pill text-white bg-success px-3"
+                        >Disponible</span
+                      >
+                      <ng-template #elseBlock
+                        ><span
+                          class="badge rounded-pill text-white bg-danger px-3"
+                          >Asignado</span
+                        ></ng-template
+                      >
+                    </h6>
+                  </td>
+                  <td>
+                    <i
+                      style="cursor: pointer"
+                      [routerLink]="['/maquinarias/form', i]"
+                      class="fa-solid fa-pen-to-square mr-3 text-info"
+                    ></i>
+                    <i
+                      style="cursor: pointer"
+                      (click)="removeMaquinaria(i)"
+                      class="fa-solid fa-trash text-danger"
+                    ></i>
+                  </td></tr
+              ></ng-template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

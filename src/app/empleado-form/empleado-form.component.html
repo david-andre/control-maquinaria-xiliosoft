@@ -1,0 +1,54 @@
+<div class="row m-4">
+  <div class="card">
+    <div class="card-header">Datos del empleado</div>
+    <div class="card-body">
+      <form (ngSubmit)="f.form.valid && saveEmpleado(data)" #f="ngForm">
+        <div class="row">
+          <div class="col">
+            <label>Nombre</label>
+            <input
+              [(ngModel)]="data.nombre"
+              type="text"
+              name="nombre"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="col">
+            <label>Cargo</label>
+            <input
+              [(ngModel)]="data.cargo"
+              type="text"
+              name="cargo"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mt-1">
+          <div class="col">
+            <label>Cédula</label>
+            <input
+              [(ngModel)]="data.cedula"
+              type="text"
+              name="cedula"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="col">
+            <label>Area</label>
+            <input
+              [(ngModel)]="data.area"
+              type="text"
+              name="area"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>
